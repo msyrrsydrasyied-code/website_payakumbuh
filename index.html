@@ -24,18 +24,15 @@
     a{color:inherit;text-decoration:none}
     img{display:block;width:100%;height:100%;object-fit:cover}
     .container{width:min(1160px,calc(100% - 44px));margin-inline:auto}
-    .eyebrow{display:inline-flex;align-items:center;gap:10px;color:#a17d43;font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase}
-    .eyebrow:before{content:"";width:26px;height:1px;background:currentColor}
-    .section{padding:104px 0}
-    .section-head{max-width:690px;margin-bottom:44px}
-    .section-head h2{font:600 clamp(2.2rem,4.4vw,3.5rem)/1.12 var(--serif);letter-spacing:-.035em;margin:16px 0}
+    .section{padding:96px 0}
+    .section-head{max-width:690px;margin-bottom:40px}
+    .section-head h2{font:600 clamp(2.2rem,4.4vw,3.5rem)/1.12 var(--serif);letter-spacing:-.035em;margin:0 0 16px}
     .section-head p{max-width:600px;color:var(--muted);font-size:.98rem}
     .site-header{position:fixed;inset:0 0 auto;z-index:20;background:rgba(20,49,40,.92);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.1)}
     .nav{height:78px;display:flex;align-items:center;justify-content:space-between;gap:24px}
     .brand{display:flex;align-items:center;gap:12px;color:white}
     .brand-mark{width:38px;height:38px;border:1px solid rgba(211,181,126,.8);border-radius:50%;display:grid;place-items:center;color:#e0c28f;font:600 1.05rem var(--serif)}
     .brand-name{font:600 1.05rem var(--serif);letter-spacing:.02em}
-    .brand-sub{display:block;font:500 .57rem var(--sans);letter-spacing:.2em;text-transform:uppercase;color:#c4cfc8;margin-top:1px}
     .nav-links{display:flex;align-items:center;gap:27px;list-style:none;color:rgba(255,255,255,.82);font-size:.78rem;font-weight:600}
     .nav-links a{transition:color .2s}.nav-links a:hover{color:#e3c58e}
     .nav-cta{padding:10px 17px;border:1px solid rgba(227,197,142,.7);color:#f1d7a7;border-radius:999px}
@@ -43,8 +40,7 @@
     .hero{min-height:760px;height:100svh;max-height:940px;position:relative;display:flex;align-items:center;color:white;overflow:hidden;background:#1b3e33}
     .hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(9,31,25,.82) 0%,rgba(9,31,25,.53) 48%,rgba(9,31,25,.12) 100%),linear-gradient(0deg,rgba(9,31,25,.38),transparent 50%),url("https://commons.wikimedia.org/wiki/Special:FilePath/Pemandangan_kota_Payakumbuh_01.jpg?width=1800") center 48%/cover no-repeat;transform:scale(1.015)}
     .hero-content{position:relative;z-index:1;padding-top:80px;max-width:760px}
-    .hero .eyebrow{color:#e3c58e}
-    .hero h1{font:600 clamp(3.6rem,8vw,7.1rem)/.99 var(--serif);letter-spacing:-.055em;margin:24px 0}
+    .hero h1{font:600 clamp(3.6rem,8vw,7.1rem)/.99 var(--serif);letter-spacing:-.055em;margin:0 0 24px}
     .hero h1 em{font-weight:500;color:#e4c58e}
     .hero-copy{max-width:600px;color:rgba(255,255,255,.83);font-size:1.04rem;line-height:1.85}
     .hero-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:34px}
@@ -55,14 +51,10 @@
     .hero-caption{position:absolute;right:30px;bottom:28px;z-index:2;color:rgba(255,255,255,.75);font-size:.66rem;text-align:right}
     .hero-caption a{text-decoration:underline}
     .intro{display:grid;grid-template-columns:1.05fr .95fr;gap:80px;align-items:center}
-    .intro-copy h2{font:600 clamp(2.5rem,4.5vw,4rem)/1.1 var(--serif);letter-spacing:-.04em;margin:17px 0 22px}
+    .intro-copy h2{font:600 clamp(2.5rem,4.5vw,4rem)/1.1 var(--serif);letter-spacing:-.04em;margin:0 0 20px}
     .intro-copy p{color:var(--muted);margin-top:14px}
-    .intro-quote{margin-top:26px;padding:18px 22px;border-left:3px solid var(--gold);background:var(--cream);font:500 1.08rem/1.6 var(--serif);color:var(--forest)}
-    .intro-visual{position:relative;min-height:440px}
-    .intro-visual img{position:absolute;inset:0;border-radius:var(--radius);box-shadow:var(--shadow)}
-    .visual-label{position:absolute;left:-22px;bottom:25px;background:var(--forest);color:white;padding:17px 22px;border-radius:12px;box-shadow:var(--shadow)}
-    .visual-label strong{display:block;font:600 1.3rem var(--serif)}
-    .visual-label span{font-size:.68rem;color:#d5dfd8}
+    .intro-visual{position:relative;min-height:440px;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+    .intro-visual img{position:absolute;inset:0}
     .facts{background:var(--forest);color:white;padding:34px 0}
     .facts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:25px}
     .fact{padding:8px 25px;border-left:1px solid rgba(255,255,255,.2)}
@@ -73,10 +65,9 @@
     .destination-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
     .destination-card{background:white;border-radius:var(--radius);overflow:hidden;box-shadow:0 8px 28px rgba(25,50,39,.06);transition:transform .25s,box-shadow .25s}
     .destination-card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
-    .destination-image{height:235px;position:relative;background:#d9ded6}
-    .destination-image img{transition:transform .5s}
-    .destination-card:hover .destination-image img{transform:scale(1.04)}
-    .destination-image .tag{position:absolute;left:15px;top:15px;background:rgba(20,49,40,.9);color:#f1d7a7;padding:6px 10px;border-radius:999px;font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+    .destination-image{height:235px;position:relative;background:#d9ded6;overflow:hidden}
+    .destination-image img{transition:transform .5s cubic-bezier(.25,1,.5,1);will-change:transform}
+    .destination-card:hover .destination-image img{transform:scale(1.05)}
     .destination-body{padding:22px 23px 24px}
     .destination-body h3{font:600 1.42rem var(--serif);margin-bottom:8px}
     .destination-body p{color:var(--muted);font-size:.84rem;line-height:1.75}
@@ -90,23 +81,27 @@
     .scope-note{margin-top:28px;padding:18px 21px;background:#ebe6d9;border-radius:12px;color:#68736b;font-size:.78rem;line-height:1.8}
     .scope-note strong{color:var(--forest)}
     .culture{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:center}
-    .culture-photo{height:450px;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
-    .culture-copy h2{font:600 clamp(2.3rem,4vw,3.6rem)/1.1 var(--serif);margin:17px 0}
+    .culture-photo{height:450px;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);position:relative}
+    .culture-photo img{transition:transform 1s cubic-bezier(.25,1,.5,1);will-change:transform}
+    .culture-photo:hover img{transform:scale(1.04)}
+    .culture-copy h2{font:600 clamp(2.3rem,4vw,3.6rem)/1.1 var(--serif);margin:0 0 16px}
     .culture-copy p{color:var(--muted);margin-top:14px}
     .culture-list{display:grid;gap:14px;margin-top:25px}
-    .culture-item{display:flex;gap:14px;align-items:flex-start}
-    .culture-item b{display:grid;place-items:center;flex:0 0 30px;height:30px;border-radius:50%;background:#eee7d8;color:#9b7843;font-size:.8rem}
+    .culture-item{display:block}
     .culture-item span{font-size:.84rem;color:var(--muted)}
     .culinary{background:#f0eee6}
     .food-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
     .food-card{background:white;border-radius:var(--radius);overflow:hidden;box-shadow:0 8px 28px rgba(25,50,39,.05)}
-    .food-photo{height:245px;background:#e5e0d5}
-    .food-content{padding:21px 22px 23px}
+    .food-photo{height:245px;background:#e5e0d5;position:relative;overflow:hidden}
+    .food-photo img{transition:transform .7s cubic-bezier(.25,1,.5,1);will-change:transform}
+    .food-card:hover .food-photo img{transform:scale(1.04)}
+    .food-content{padding:22px 23px 24px}
     .food-content h3{font:600 1.42rem var(--serif)}
     .food-content p{margin-top:8px;color:var(--muted);font-size:.83rem;line-height:1.75}
-    .photo-note{display:inline-block;margin-top:11px;font-size:.65rem;color:#8b744f;background:#f4efe4;padding:5px 8px;border-radius:5px}
+    .food-content p.photo-note{font-size:.75rem;line-height:1.55}
+    .food-content .image-credit{margin-top:12px}
     .closing{padding:95px 0;background:var(--forest);color:white;text-align:center}
-    .closing h2{font:600 clamp(2.4rem,5vw,4.3rem)/1.1 var(--serif);max-width:780px;margin:18px auto}
+    .closing h2{font:600 clamp(2.4rem,5vw,4.3rem)/1.1 var(--serif);max-width:780px;margin:0 auto 18px}
     .closing p{max-width:620px;margin:0 auto;color:rgba(255,255,255,.7);font-size:.9rem}
     .closing .btn{margin-top:28px}
     .sources{padding:40px 0;background:#ede9df}
@@ -122,25 +117,132 @@
       .culture{gap:38px}
     }
     @media(max-width:700px){
-      .container{width:min(100% - 32px,560px)}.section{padding:76px 0}
+      .container{width:min(100% - 32px,560px)}.section{padding:72px 0}
       .nav{height:70px}.menu-toggle{display:block}.nav-links{display:none;position:absolute;top:70px;left:0;right:0;background:var(--forest);padding:18px 24px 24px;flex-direction:column;align-items:stretch;gap:0}
       .nav-links.open{display:flex}.nav-links li a{display:block;padding:12px 0;font-size:.84rem}.nav-cta{border:0;padding:12px 0}
       .hero{min-height:700px;height:92svh}.hero:before{background-position:58% center;background-image:linear-gradient(90deg,rgba(9,31,25,.82),rgba(9,31,25,.38)),linear-gradient(0deg,rgba(9,31,25,.42),transparent 55%),url("https://commons.wikimedia.org/wiki/Special:FilePath/Pemandangan_kota_Payakumbuh_01.jpg?width=1400")}
       .hero h1{font-size:clamp(3.35rem,15vw,5.2rem)}.hero-copy{font-size:.92rem}.hero-caption{right:16px;bottom:16px;font-size:.58rem}
-      .intro,.culture{grid-template-columns:1fr;gap:34px}.intro-visual{min-height:330px;order:2}.visual-label{left:12px}
+      .intro,.culture{grid-template-columns:1fr;gap:34px}.intro-visual{min-height:330px;order:2}
       .facts-grid{grid-template-columns:1fr;gap:12px}.fact{border:0;border-top:1px solid rgba(255,255,255,.18);padding:14px 0}.fact:first-child{border:0}
       .destination-grid,.food-grid{grid-template-columns:1fr;gap:17px}.destination-image,.no-photo{height:230px}.food-photo{height:230px}
       .culture-photo{height:330px;order:2}.closing{padding:75px 0}
     }
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
-  </style>
+    @media(prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+      .destination-card:hover .destination-image img,
+      .food-card:hover .food-photo img,
+      .culture-photo:hover img,
+      .destination-card:hover,
+      .food-card:hover,
+      .btn:hover{transform:none!important}
+    }
+  
+/* ANIMASI EXPLORE PAYAKUMBUH */
+
+/* Keterangan lokasi lebih natural */
+.location {
+    display: block;
+    margin-top: 12px;
+    color: #78827b;
+    font-size: .78rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: none;
+}
+
+/* Catatan wilayah tanpa kotak dekoratif */
+.scope-note {
+    margin-top: 28px;
+    padding: 18px 0 0;
+    background: transparent;
+    border: 0;
+    border-top: 1px solid var(--line);
+    border-radius: 0;
+    color: #68736b;
+    font-size: .78rem;
+    line-height: 1.8;
+}
+
+.scope-note strong {
+    color: var(--forest);
+}
+
+/* Zoom halus untuk seluruh foto */
+.destination-image,
+.food-photo,
+.culture-photo,
+.intro-visual {
+    overflow: hidden;
+}
+
+.destination-image img,
+.food-photo img,
+.culture-photo img,
+.intro-visual img {
+    transition: transform .8s cubic-bezier(.2, .7, .2, 1);
+    will-change: transform;
+}
+
+.destination-card:hover .destination-image img,
+.food-card:hover .food-photo img,
+.culture-photo:hover img,
+.intro-visual:hover img {
+    transform: scale(1.07);
+}
+
+/* Animasi saat elemen memasuki layar */
+.reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+        opacity .75s ease,
+        transform .75s cubic-bezier(.2, .7, .2, 1);
+}
+
+.reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animasi latar hero */
+.hero:before {
+    animation: heroBreath 18s ease-in-out infinite alternate;
+}
+
+@keyframes heroBreath {
+    from { transform: scale(1); }
+    to { transform: scale(1.07); }
+}
+
+/* Aksesibilitas */
+@media (prefers-reduced-motion: reduce) {
+    .hero:before {
+        animation: none;
+    }
+
+    .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .destination-image img,
+    .food-photo img,
+    .culture-photo img,
+    .intro-visual img {
+        transition: none;
+    }
+}
+
+</style>
 </head>
 <body>
   <header class="site-header">
     <div class="container nav">
       <a class="brand" href="#beranda" aria-label="Explore Payakumbuh beranda">
         <span class="brand-mark">P</span>
-        <span><span class="brand-name">Explore Payakumbuh</span><span class="brand-sub">The Heart of Minangkabau</span></span>
+        <span class="brand-name">Explore Payakumbuh</span>
       </a>
       <button class="menu-toggle" aria-label="Buka navigasi" aria-expanded="false">☰</button>
       <ul class="nav-links">
@@ -156,7 +258,6 @@
   <main>
     <section class="hero" id="beranda">
       <div class="container hero-content">
-        <span class="eyebrow">Sumatera Barat · Ranah Minang</span>
         <h1>Temukan cerita<br>di balik <em>Payakumbuh.</em></h1>
         <p class="hero-copy">Dari aliran Batang Agam hingga rasa rendang yang kaya rempah, jelajahi kota yang menyimpan keindahan alam, jejak sejarah, budaya, dan keramahan Minangkabau.</p>
         <div class="hero-actions">
@@ -170,15 +271,12 @@
     <section class="section" id="cerita">
       <div class="container intro">
         <div class="intro-copy">
-          <span class="eyebrow">Sebuah kota, banyak cerita</span>
           <h2>Payakumbuh bukan sekadar tempat untuk dilewati.</h2>
           <p>Terletak di dataran tinggi Sumatera Barat, Payakumbuh tumbuh sebagai kota perdagangan, pendidikan, dan persinggahan yang dekat dengan kehidupan masyarakat Minangkabau. Suasana kota, kawasan sungai, tradisi, serta kulinernya membentuk pengalaman yang khas.</p>
           <p>Payakumbuh juga dikenal dengan julukan <strong>City of Randang</strong>. Namun, cerita kota ini tidak berhenti pada makanan. Ada ruang publik yang hidup, warisan sejarah, kampung budaya, dan alam di wilayah sekitarnya yang layak dikenal.</p>
-          <div class="intro-quote">“Mengenal sebuah tempat berarti mengenal orang-orang, tradisi, dan cerita yang membuatnya hidup.”</div>
         </div>
         <div class="intro-visual">
           <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Ko_Difoto_Dari_Puncak_Ngalau_-_panoramio.jpg?width=1200" alt="Panorama sawah dan perbukitan dari kawasan Puncak Ngalau, Payakumbuh" loading="lazy">
-          <div class="visual-label"><strong>Luak Limopuluah</strong><span>Jejak alam dan budaya Minangkabau</span></div>
         </div>
       </div>
     </section>
@@ -194,7 +292,6 @@
     <section class="section destinations" id="wisata">
       <div class="container">
         <div class="section-head">
-          <span class="eyebrow">Tempat untuk dijelajahi</span>
           <h2>Kenali Payakumbuh dan kawasan di sekitarnya.</h2>
           <p>Setiap tempat punya karakter dan cerita sendiri. Keterangan lokasi di bawah membedakan destinasi yang berada di dalam Kota Payakumbuh dan yang berada di Kabupaten Lima Puluh Kota.</p>
         </div>
@@ -202,7 +299,6 @@
           <article class="destination-card">
             <div class="destination-image">
               <img src="images/wisata/ngalau.jpg" alt="Kawasan Ngalau Indah, Payakumbuh" loading="lazy">
-              <span class="tag">Panorama Ngalau</span>
             </div>
             <div class="destination-body">
               <h3>Ngalau Indah</h3>
@@ -215,7 +311,6 @@
           <article class="destination-card">
             <div class="destination-image">
               <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Taman_Normalisasi_Batang_Agam_02.jpg?width=1100" alt="Taman Normalisasi Batang Agam di Kota Payakumbuh" loading="lazy">
-              <span class="tag">Ruang Publik</span>
             </div>
             <div class="destination-body">
               <h3>Taman Batang Agam</h3>
@@ -228,7 +323,6 @@
           <article class="destination-card">
             <div class="destination-image">
               <img src="images/sejarah/jembatan.jpg" alt="Jembatan Ratapan Ibu di Payakumbuh" loading="lazy">
-              <span class="tag">Warisan Sejarah</span>
             </div>
             <div class="destination-body">
               <h3>Jembatan Ratapan Ibu</h3>
@@ -241,7 +335,6 @@
           <article class="destination-card">
             <div class="destination-image">
               <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Lembah_Harau.jpg?width=1100" alt="Tebing dan lembah hijau di Lembah Harau" loading="lazy">
-              <span class="tag">Lanskap Alam</span>
             </div>
             <div class="destination-body">
               <h3>Lembah Harau</h3>
@@ -254,7 +347,6 @@
           <article class="destination-card">
             <div class="destination-image">
               <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Bukit_hijau_dan_rakit_di_kapalo_banda_taram.jpg?width=1100" alt="Air tenang, rakit bambu dan bukit hijau di Kapalo Banda Taram" loading="lazy">
-              <span class="tag">Wisata Air</span>
             </div>
             <div class="destination-body">
               <h3>Kapalo Banda Taram</h3>
@@ -267,7 +359,6 @@
           <article class="destination-card">
             <div class="destination-image">
               <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Panorama_Kelok_sembilan.jpg?width=1100" alt="Jembatan layang Kelok Sembilan di antara perbukitan" loading="lazy">
-              <span class="tag">Ikon Jalan Raya</span>
             </div>
             <div class="destination-body">
               <h3>Kelok Sembilan</h3>
@@ -287,13 +378,12 @@
           <img src="https://commons.wikimedia.org/wiki/Special:FilePath/DSC_4047_wikimedia2020_deni_dahniel_Pacu_Itik_Terbang.jpg?width=1200" alt="Tradisi pacu itiak di Payakumbuh" loading="lazy">
         </div>
         <div class="culture-copy">
-          <span class="eyebrow">Budaya yang terus hidup</span>
           <h2>Warisan bukan hanya untuk dikenang.</h2>
           <p>Payakumbuh berada dalam lingkungan budaya Minangkabau. Adat, musyawarah, seni pertunjukan, dan tradisi nagari menjadi bagian dari kehidupan masyarakat yang terus berkembang.</p>
           <div class="culture-list">
-            <div class="culture-item"><b>01</b><span><strong>Pacu Itiak</strong> — tradisi khas yang dikenal luas dari Payakumbuh dan sekitarnya.</span></div>
-            <div class="culture-item"><b>02</b><span><strong>Randai dan seni Minang</strong> — perpaduan cerita, gerak, musik, dan nilai kehidupan.</span></div>
-            <div class="culture-item"><b>03</b><span><strong>Adat dan nagari</strong> — ruang kebersamaan yang menjaga identitas masyarakat.</span></div>
+            <div class="culture-item"><span><strong>Pacu Itiak</strong> — tradisi khas yang dikenal luas dari Payakumbuh dan sekitarnya.</span></div>
+            <div class="culture-item"><span><strong>Randai dan seni Minang</strong> — perpaduan cerita, gerak, musik, dan nilai kehidupan.</span></div>
+            <div class="culture-item"><span><strong>Adat dan nagari</strong> — ruang kebersamaan yang menjaga identitas masyarakat.</span></div>
           </div>
           <small class="image-credit">Foto Pacu Itiak: Deni Dahniel · <a href="https://commons.wikimedia.org/wiki/Category:Payakumbuh" target="_blank" rel="noopener">Wikimedia Commons</a></small>
         </div>
@@ -303,7 +393,6 @@
     <section class="section culinary" id="kuliner">
       <div class="container">
         <div class="section-head">
-          <span class="eyebrow">Rasa dari Ranah Minang</span>
           <h2>Kenali kuliner, kenali ceritanya.</h2>
           <p>Payakumbuh dikenal dengan ragam olahan rendang dan kudapan tradisional. Foto yang ditampilkan diberi keterangan sumber agar tidak menimbulkan kesan bahwa semua foto dibuat di Payakumbuh.</p>
         </div>
@@ -313,7 +402,7 @@
             <div class="food-content">
               <h3>Rendang</h3>
               <p>Olahan daging yang dimasak perlahan bersama santan dan racikan rempah hingga bumbu meresap. Rendang menjadi salah satu identitas kuliner yang menguatkan julukan Payakumbuh sebagai City of Randang.</p>
-              <span class="photo-note">Foto contoh rendang Minangkabau · bukan dokumentasi produsen lokal</span>
+              <p class="photo-note">Foto contoh rendang Minangkabau · bukan dokumentasi produsen lokal</p>
               <small class="image-credit">Foto: Midori · <a href="https://commons.wikimedia.org/wiki/File:Rendang_daging_sapi_asli_Padang.JPG" target="_blank" rel="noopener">Wikimedia Commons, CC BY 3.0</a></small>
             </div>
           </article>
@@ -322,7 +411,7 @@
             <div class="food-content">
               <h3>Galamai</h3>
               <p>Kudapan manis menyerupai dodol, dibuat dari tepung ketan, santan, dan gula. Proses memasaknya membutuhkan pengadukan lama hingga adonan mengental dan bertekstur kenyal.</p>
-              <span class="photo-note">Foto Galamai Gegek · diambil di Batusangkar, bukan Payakumbuh</span>
+              <p class="photo-note">Foto Galamai Gegek · diambil di Batusangkar, bukan Payakumbuh</p>
               <small class="image-credit">Foto: Adhmi · <a href="https://commons.wikimedia.org/wiki/File:Galamai_gegek.jpg" target="_blank" rel="noopener">Wikimedia Commons, CC BY-SA 4.0</a></small>
             </div>
           </article>
@@ -331,7 +420,7 @@
             <div class="food-content">
               <h3>Batiah</h3>
               <p>Kudapan berbahan beras ketan yang dibentuk pipih, dikeringkan, lalu digoreng hingga renyah. Batiah dikenal sebagai salah satu oleh-oleh khas Payakumbuh.</p>
-              <span class="photo-note">Foto Batiah khas Payakumbuh</span>
+              <p class="photo-note">Foto Batiah khas Payakumbuh</p>
               <small class="image-credit">Foto: Aldhiusy · <a href="https://commons.wikimedia.org/wiki/File:Batiah.jpg" target="_blank" rel="noopener">Wikimedia Commons, CC BY-SA 4.0</a></small>
             </div>
           </article>
@@ -341,7 +430,6 @@
 
     <section class="closing" id="jelajahi">
       <div class="container">
-        <span class="eyebrow">Sampai jumpa di Payakumbuh</span>
         <h2>Setiap sudut punya cerita. Setiap rasa punya kenangan.</h2>
         <p>Jelajahi dengan rasa ingin tahu, hormati budaya setempat, dan dukung masyarakat serta pelaku usaha lokal dalam setiap perjalanan.</p>
         <a class="btn btn-primary" href="#beranda">Kembali ke atas ↑</a>
@@ -365,7 +453,7 @@
 
   <footer>
     <div class="container footer-row">
-      <div><div class="footer-brand">Explore Payakumbuh</div><div class="footer-small">The Heart of Minangkabau</div></div>
+      <div><div class="footer-brand">Explore Payakumbuh</div></div>
       <div class="footer-small">© 2026 Explore Payakumbuh · Proyek informasi dan promosi lokal</div>
     </div>
   </footer>
@@ -385,6 +473,38 @@
         toggle.textContent = "☰";
       });
     });
-  </script>
+  
+/* ANIMASI SCROLL EXPLORE PAYAKUMBUH */
+const revealElements = document.querySelectorAll(
+    '.section-head, .destination-card, .food-card, ' +
+    '.intro-copy, .intro-visual, .culture-photo, ' +
+    '.culture-copy, .fact, .closing h2, .closing p'
+);
+
+if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    revealElements.forEach(element => element.classList.add('is-visible'));
+} else if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.12,
+        rootMargin: '0px 0px -35px 0px'
+    });
+
+    revealElements.forEach((element, index) => {
+        element.classList.add('reveal');
+        element.style.transitionDelay = `${(index % 3) * 100}ms`;
+        revealObserver.observe(element);
+    });
+} else {
+    revealElements.forEach(element => element.classList.add('is-visible'));
+}
+
+</script>
 </body>
 </html>
