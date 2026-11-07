@@ -1,16 +1,390 @@
-<body>
-    <h1>Halo, Payakumbuh!</h1>
-    <p>Website pertama saya menggunakan Git.</p>
-    <p>Saya sedang belajar Git dan GitHub.</p>
-</body><!DOCTYPE html>
+<!doctype html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <title>Website Payakumbuh</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Jelajahi Payakumbuh, Kota Randang di Sumatera Barat. Kenali destinasi, budaya Minangkabau, sejarah, dan kuliner khasnya.">
+  <meta name="theme-color" content="#183d32">
+  <title>Explore Payakumbuh — Cerita dari Kota Randang</title>
+  <link rel="preconnect" href="https://commons.wikimedia.org">
+  <link rel="preconnect" href="https://upload.wikimedia.org">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --forest:#183d32;--forest-2:#244e40;--cream:#f5f2e9;--paper:#fffdf8;
+      --ink:#202b26;--muted:#69756e;--gold:#c7a56a;--line:#e5e0d5;
+      --serif:"Playfair Display",Georgia,serif;--sans:"DM Sans",Arial,sans-serif;
+      --shadow:0 18px 50px rgba(22,45,36,.12);--radius:18px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;scroll-padding-top:88px}
+    body{font-family:var(--sans);color:var(--ink);background:var(--paper);line-height:1.65}
+    a{color:inherit;text-decoration:none}
+    img{display:block;width:100%;height:100%;object-fit:cover}
+    .container{width:min(1160px,calc(100% - 44px));margin-inline:auto}
+    .eyebrow{display:inline-flex;align-items:center;gap:10px;color:#a17d43;font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase}
+    .eyebrow:before{content:"";width:26px;height:1px;background:currentColor}
+    .section{padding:104px 0}
+    .section-head{max-width:690px;margin-bottom:44px}
+    .section-head h2{font:600 clamp(2.2rem,4.4vw,3.5rem)/1.12 var(--serif);letter-spacing:-.035em;margin:16px 0}
+    .section-head p{max-width:600px;color:var(--muted);font-size:.98rem}
+    .site-header{position:fixed;inset:0 0 auto;z-index:20;background:rgba(20,49,40,.92);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.1)}
+    .nav{height:78px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:12px;color:white}
+    .brand-mark{width:38px;height:38px;border:1px solid rgba(211,181,126,.8);border-radius:50%;display:grid;place-items:center;color:#e0c28f;font:600 1.05rem var(--serif)}
+    .brand-name{font:600 1.05rem var(--serif);letter-spacing:.02em}
+    .brand-sub{display:block;font:500 .57rem var(--sans);letter-spacing:.2em;text-transform:uppercase;color:#c4cfc8;margin-top:1px}
+    .nav-links{display:flex;align-items:center;gap:27px;list-style:none;color:rgba(255,255,255,.82);font-size:.78rem;font-weight:600}
+    .nav-links a{transition:color .2s}.nav-links a:hover{color:#e3c58e}
+    .nav-cta{padding:10px 17px;border:1px solid rgba(227,197,142,.7);color:#f1d7a7;border-radius:999px}
+    .menu-toggle{display:none;background:none;border:0;color:white;font-size:1.5rem;cursor:pointer}
+    .hero{min-height:760px;height:100svh;max-height:940px;position:relative;display:flex;align-items:center;color:white;overflow:hidden;background:#1b3e33}
+    .hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(9,31,25,.82) 0%,rgba(9,31,25,.53) 48%,rgba(9,31,25,.12) 100%),linear-gradient(0deg,rgba(9,31,25,.38),transparent 50%),url("https://commons.wikimedia.org/wiki/Special:FilePath/Pemandangan_kota_Payakumbuh_01.jpg?width=1800") center 48%/cover no-repeat;transform:scale(1.015)}
+    .hero-content{position:relative;z-index:1;padding-top:80px;max-width:760px}
+    .hero .eyebrow{color:#e3c58e}
+    .hero h1{font:600 clamp(3.6rem,8vw,7.1rem)/.99 var(--serif);letter-spacing:-.055em;margin:24px 0}
+    .hero h1 em{font-weight:500;color:#e4c58e}
+    .hero-copy{max-width:600px;color:rgba(255,255,255,.83);font-size:1.04rem;line-height:1.85}
+    .hero-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:34px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 22px;border-radius:999px;font-size:.82rem;font-weight:700;transition:transform .2s,background .2s}
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{background:#d8b77e;color:#1d342a}
+    .btn-ghost{border:1px solid rgba(255,255,255,.55);color:white}
+    .hero-caption{position:absolute;right:30px;bottom:28px;z-index:2;color:rgba(255,255,255,.75);font-size:.66rem;text-align:right}
+    .hero-caption a{text-decoration:underline}
+    .intro{display:grid;grid-template-columns:1.05fr .95fr;gap:80px;align-items:center}
+    .intro-copy h2{font:600 clamp(2.5rem,4.5vw,4rem)/1.1 var(--serif);letter-spacing:-.04em;margin:17px 0 22px}
+    .intro-copy p{color:var(--muted);margin-top:14px}
+    .intro-quote{margin-top:26px;padding:18px 22px;border-left:3px solid var(--gold);background:var(--cream);font:500 1.08rem/1.6 var(--serif);color:var(--forest)}
+    .intro-visual{position:relative;min-height:440px}
+    .intro-visual img{position:absolute;inset:0;border-radius:var(--radius);box-shadow:var(--shadow)}
+    .visual-label{position:absolute;left:-22px;bottom:25px;background:var(--forest);color:white;padding:17px 22px;border-radius:12px;box-shadow:var(--shadow)}
+    .visual-label strong{display:block;font:600 1.3rem var(--serif)}
+    .visual-label span{font-size:.68rem;color:#d5dfd8}
+    .facts{background:var(--forest);color:white;padding:34px 0}
+    .facts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:25px}
+    .fact{padding:8px 25px;border-left:1px solid rgba(255,255,255,.2)}
+    .fact:first-child{border:0}
+    .fact strong{display:block;font:600 1.55rem var(--serif);color:#e3c58e}
+    .fact span{display:block;color:rgba(255,255,255,.72);font-size:.76rem;margin-top:4px}
+    .destinations{background:var(--cream)}
+    .destination-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+    .destination-card{background:white;border-radius:var(--radius);overflow:hidden;box-shadow:0 8px 28px rgba(25,50,39,.06);transition:transform .25s,box-shadow .25s}
+    .destination-card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+    .destination-image{height:235px;position:relative;background:#d9ded6}
+    .destination-image img{transition:transform .5s}
+    .destination-card:hover .destination-image img{transform:scale(1.04)}
+    .destination-image .tag{position:absolute;left:15px;top:15px;background:rgba(20,49,40,.9);color:#f1d7a7;padding:6px 10px;border-radius:999px;font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+    .destination-body{padding:22px 23px 24px}
+    .destination-body h3{font:600 1.42rem var(--serif);margin-bottom:8px}
+    .destination-body p{color:var(--muted);font-size:.84rem;line-height:1.75}
+    .location{display:block;margin-top:13px;color:#9a7845;font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+    .image-credit{display:block;margin-top:8px;font-size:.64rem;color:#89928c}
+    .image-credit a{text-decoration:underline}
+    .no-photo{height:235px;display:grid;place-items:center;padding:25px;text-align:center;background:linear-gradient(135deg,#e7e2d5,#d4ded5);color:#53665a}
+    .no-photo .symbol{font:2.2rem var(--serif);color:#9b8156}
+    .no-photo strong{display:block;font:600 1.05rem var(--serif);margin-top:7px}
+    .no-photo small{display:block;max-width:230px;font-size:.68rem;margin-top:5px}
+    .scope-note{margin-top:28px;padding:18px 21px;background:#ebe6d9;border-radius:12px;color:#68736b;font-size:.78rem;line-height:1.8}
+    .scope-note strong{color:var(--forest)}
+    .culture{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:center}
+    .culture-photo{height:450px;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+    .culture-copy h2{font:600 clamp(2.3rem,4vw,3.6rem)/1.1 var(--serif);margin:17px 0}
+    .culture-copy p{color:var(--muted);margin-top:14px}
+    .culture-list{display:grid;gap:14px;margin-top:25px}
+    .culture-item{display:flex;gap:14px;align-items:flex-start}
+    .culture-item b{display:grid;place-items:center;flex:0 0 30px;height:30px;border-radius:50%;background:#eee7d8;color:#9b7843;font-size:.8rem}
+    .culture-item span{font-size:.84rem;color:var(--muted)}
+    .culinary{background:#f0eee6}
+    .food-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+    .food-card{background:white;border-radius:var(--radius);overflow:hidden;box-shadow:0 8px 28px rgba(25,50,39,.05)}
+    .food-photo{height:245px;background:#e5e0d5}
+    .food-content{padding:21px 22px 23px}
+    .food-content h3{font:600 1.42rem var(--serif)}
+    .food-content p{margin-top:8px;color:var(--muted);font-size:.83rem;line-height:1.75}
+    .photo-note{display:inline-block;margin-top:11px;font-size:.65rem;color:#8b744f;background:#f4efe4;padding:5px 8px;border-radius:5px}
+    .closing{padding:95px 0;background:var(--forest);color:white;text-align:center}
+    .closing h2{font:600 clamp(2.4rem,5vw,4.3rem)/1.1 var(--serif);max-width:780px;margin:18px auto}
+    .closing p{max-width:620px;margin:0 auto;color:rgba(255,255,255,.7);font-size:.9rem}
+    .closing .btn{margin-top:28px}
+    .sources{padding:40px 0;background:#ede9df}
+    .sources h2{font:600 1.2rem var(--serif);margin-bottom:14px}
+    .sources p{font-size:.73rem;color:#68736b;line-height:1.9}
+    .sources a{text-decoration:underline;text-underline-offset:2px}
+    footer{background:#102b23;color:rgba(255,255,255,.68);padding:30px 0}
+    .footer-row{display:flex;justify-content:space-between;gap:20px;align-items:center;flex-wrap:wrap}
+    .footer-brand{font:600 1.15rem var(--serif);color:white}
+    .footer-small{font-size:.7rem}
+    @media(max-width:950px){
+      .nav-links{gap:16px;font-size:.7rem}.intro{gap:42px}.destination-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .culture{gap:38px}
+    }
+    @media(max-width:700px){
+      .container{width:min(100% - 32px,560px)}.section{padding:76px 0}
+      .nav{height:70px}.menu-toggle{display:block}.nav-links{display:none;position:absolute;top:70px;left:0;right:0;background:var(--forest);padding:18px 24px 24px;flex-direction:column;align-items:stretch;gap:0}
+      .nav-links.open{display:flex}.nav-links li a{display:block;padding:12px 0;font-size:.84rem}.nav-cta{border:0;padding:12px 0}
+      .hero{min-height:700px;height:92svh}.hero:before{background-position:58% center;background-image:linear-gradient(90deg,rgba(9,31,25,.82),rgba(9,31,25,.38)),linear-gradient(0deg,rgba(9,31,25,.42),transparent 55%),url("https://commons.wikimedia.org/wiki/Special:FilePath/Pemandangan_kota_Payakumbuh_01.jpg?width=1400")}
+      .hero h1{font-size:clamp(3.35rem,15vw,5.2rem)}.hero-copy{font-size:.92rem}.hero-caption{right:16px;bottom:16px;font-size:.58rem}
+      .intro,.culture{grid-template-columns:1fr;gap:34px}.intro-visual{min-height:330px;order:2}.visual-label{left:12px}
+      .facts-grid{grid-template-columns:1fr;gap:12px}.fact{border:0;border-top:1px solid rgba(255,255,255,.18);padding:14px 0}.fact:first-child{border:0}
+      .destination-grid,.food-grid{grid-template-columns:1fr;gap:17px}.destination-image,.no-photo{height:230px}.food-photo{height:230px}
+      .culture-photo{height:330px;order:2}.closing{padding:75px 0}
+    }
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+  </style>
 </head>
 <body>
-    <h1>Halo, Payakumbuh!</h1>
-    <p>Website pertama saya menggunakan Git.</p>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#beranda" aria-label="Explore Payakumbuh beranda">
+        <span class="brand-mark">P</span>
+        <span><span class="brand-name">Explore Payakumbuh</span><span class="brand-sub">The Heart of Minangkabau</span></span>
+      </a>
+      <button class="menu-toggle" aria-label="Buka navigasi" aria-expanded="false">☰</button>
+      <ul class="nav-links">
+        <li><a href="#cerita">Tentang</a></li>
+        <li><a href="#wisata">Destinasi</a></li>
+        <li><a href="#budaya">Budaya</a></li>
+        <li><a href="#kuliner">Kuliner</a></li>
+        <li><a class="nav-cta" href="#jelajahi">Mulai Jelajahi ↗</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="beranda">
+      <div class="container hero-content">
+        <span class="eyebrow">Sumatera Barat · Ranah Minang</span>
+        <h1>Temukan cerita<br>di balik <em>Payakumbuh.</em></h1>
+        <p class="hero-copy">Dari aliran Batang Agam hingga rasa rendang yang kaya rempah, jelajahi kota yang menyimpan keindahan alam, jejak sejarah, budaya, dan keramahan Minangkabau.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#wisata">Jelajahi Destinasi <span>↗</span></a>
+          <a class="btn btn-ghost" href="#kuliner">Kenali Kuliner</a>
+        </div>
+      </div>
+      <div class="hero-caption">Panorama Kota Payakumbuh dari kawasan Ngalau Indah · <a href="https://commons.wikimedia.org/wiki/File:Pemandangan_kota_Payakumbuh_01.jpg" target="_blank" rel="noopener">Afdhal Sy / Wikimedia Commons (CC BY-SA 4.0)</a></div>
+    </section>
+
+    <section class="section" id="cerita">
+      <div class="container intro">
+        <div class="intro-copy">
+          <span class="eyebrow">Sebuah kota, banyak cerita</span>
+          <h2>Payakumbuh bukan sekadar tempat untuk dilewati.</h2>
+          <p>Terletak di dataran tinggi Sumatera Barat, Payakumbuh tumbuh sebagai kota perdagangan, pendidikan, dan persinggahan yang dekat dengan kehidupan masyarakat Minangkabau. Suasana kota, kawasan sungai, tradisi, serta kulinernya membentuk pengalaman yang khas.</p>
+          <p>Payakumbuh juga dikenal dengan julukan <strong>City of Randang</strong>. Namun, cerita kota ini tidak berhenti pada makanan. Ada ruang publik yang hidup, warisan sejarah, kampung budaya, dan alam di wilayah sekitarnya yang layak dikenal.</p>
+          <div class="intro-quote">“Mengenal sebuah tempat berarti mengenal orang-orang, tradisi, dan cerita yang membuatnya hidup.”</div>
+        </div>
+        <div class="intro-visual">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Ko_Difoto_Dari_Puncak_Ngalau_-_panoramio.jpg?width=1200" alt="Panorama sawah dan perbukitan dari kawasan Puncak Ngalau, Payakumbuh" loading="lazy">
+          <div class="visual-label"><strong>Luak Limopuluah</strong><span>Jejak alam dan budaya Minangkabau</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="facts">
+      <div class="container facts-grid">
+        <div class="fact"><strong>17 Desember</strong><span>Hari jadi Kota Payakumbuh</span></div>
+        <div class="fact"><strong>City of Randang</strong><span>Identitas kuliner yang melekat pada kota</span></div>
+        <div class="fact"><strong>Minangkabau</strong><span>Adat, bahasa, seni, dan tradisi masyarakat</span></div>
+      </div>
+    </section>
+
+    <section class="section destinations" id="wisata">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Tempat untuk dijelajahi</span>
+          <h2>Kenali Payakumbuh dan kawasan di sekitarnya.</h2>
+          <p>Setiap tempat punya karakter dan cerita sendiri. Keterangan lokasi di bawah membedakan destinasi yang berada di dalam Kota Payakumbuh dan yang berada di Kabupaten Lima Puluh Kota.</p>
+        </div>
+        <div class="destination-grid">
+          <article class="destination-card">
+            <div class="destination-image">
+              <img src="images/wisata/ngalau.jpg" alt="Kawasan Ngalau Indah, Payakumbuh" loading="lazy">
+              <span class="tag">Panorama Ngalau</span>
+            </div>
+            <div class="destination-body">
+              <h3>Ngalau Indah</h3>
+              <p>Kawasan bukit dan gua kapur di Pakan Sinayan. Ngalau dikenal dengan formasi stalaktit dan stalagmit serta panorama kota dari area ketinggian.</p>
+              <span class="location">Payakumbuh Barat · Kota Payakumbuh</span>
+              <small class="image-credit">Foto: Dokumentasi lokal</small>
+            </div>
+          </article>
+
+          <article class="destination-card">
+            <div class="destination-image">
+              <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Taman_Normalisasi_Batang_Agam_02.jpg?width=1100" alt="Taman Normalisasi Batang Agam di Kota Payakumbuh" loading="lazy">
+              <span class="tag">Ruang Publik</span>
+            </div>
+            <div class="destination-body">
+              <h3>Taman Batang Agam</h3>
+              <p>Kawasan tepian sungai yang dikembangkan sebagai ruang publik dan area aktivitas warga. Batang Agam juga terhubung dengan kisah sejarah kota.</p>
+              <span class="location">Kota Payakumbuh</span>
+              <small class="image-credit">Foto: Mery Nurfa Dilla · <a href="https://commons.wikimedia.org/wiki/File:Taman_Normalisasi_Batang_Agam_02.jpg" target="_blank" rel="noopener">Wikimedia Commons, CC BY-SA 4.0</a></small>
+            </div>
+          </article>
+
+          <article class="destination-card">
+            <div class="destination-image">
+              <img src="images/sejarah/jembatan.jpg" alt="Jembatan Ratapan Ibu di Payakumbuh" loading="lazy">
+              <span class="tag">Warisan Sejarah</span>
+            </div>
+            <div class="destination-body">
+              <h3>Jembatan Ratapan Ibu</h3>
+              <p>Jembatan bersejarah di atas Batang Agam. Kisah penamaannya berkaitan dengan cerita perjuangan dan kesedihan para ibu pada masa kolonial.</p>
+              <span class="location">Kota Payakumbuh</span>
+              <small class="image-credit"><a href="https://disparpora.payakumbuhkota.go.id/" target="_blank" rel="noopener">Rujukan: Dinas Pariwisata Kota Payakumbuh</a></small>
+            </div>
+          </article>
+
+          <article class="destination-card">
+            <div class="destination-image">
+              <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Lembah_Harau.jpg?width=1100" alt="Tebing dan lembah hijau di Lembah Harau" loading="lazy">
+              <span class="tag">Lanskap Alam</span>
+            </div>
+            <div class="destination-body">
+              <h3>Lembah Harau</h3>
+              <p>Lembah dengan tebing-tebing batu yang menjulang, hamparan hijau, dan air terjun. Tempat ini menjadi salah satu lanskap alam paling dikenal di Luak Limopuluah.</p>
+              <span class="location">Kabupaten Lima Puluh Kota</span>
+              <small class="image-credit">Foto: Syurida · <a href="https://commons.wikimedia.org/wiki/File:Lembah_Harau.jpg" target="_blank" rel="noopener">Wikimedia Commons, CC BY-SA 4.0</a></small>
+            </div>
+          </article>
+
+          <article class="destination-card">
+            <div class="destination-image">
+              <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Bukit_hijau_dan_rakit_di_kapalo_banda_taram.jpg?width=1100" alt="Air tenang, rakit bambu dan bukit hijau di Kapalo Banda Taram" loading="lazy">
+              <span class="tag">Wisata Air</span>
+            </div>
+            <div class="destination-body">
+              <h3>Kapalo Banda Taram</h3>
+              <p>Kawasan perairan dan persawahan dengan suasana pedesaan. Rakit bambu dan pantulan perbukitan menjadi ciri visual kawasan ini.</p>
+              <span class="location">Nagari Taram · Kabupaten Lima Puluh Kota</span>
+              <small class="image-credit">Foto: Sikaka04 · <a href="https://commons.wikimedia.org/wiki/File:Bukit_hijau_dan_rakit_di_kapalo_banda_taram.jpg" target="_blank" rel="noopener">Wikimedia Commons, CC BY 4.0</a></small>
+            </div>
+          </article>
+
+          <article class="destination-card">
+            <div class="destination-image">
+              <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Panorama_Kelok_sembilan.jpg?width=1100" alt="Jembatan layang Kelok Sembilan di antara perbukitan" loading="lazy">
+              <span class="tag">Ikon Jalan Raya</span>
+            </div>
+            <div class="destination-body">
+              <h3>Kelok Sembilan</h3>
+              <p>Jembatan layang dan ruas jalan berkelok yang membentang di antara perbukitan Bukit Barisan. Salah satu ikon perjalanan di Sumatera Barat.</p>
+              <span class="location">Kabupaten Lima Puluh Kota</span>
+              <small class="image-credit">Foto: DahliaDahlia Putri · <a href="https://commons.wikimedia.org/wiki/File:Panorama_Kelok_sembilan.jpg" target="_blank" rel="noopener">Wikimedia Commons, CC BY-SA 4.0</a></small>
+            </div>
+          </article>
+        </div>
+        <div class="scope-note"><strong>Catatan wilayah:</strong> Ngalau Indah, Taman Batang Agam, dan Jembatan Ratapan Ibu berada di wilayah administratif Kota Payakumbuh. Lembah Harau, Kapalo Banda Taram, dan Kelok Sembilan berada di Kabupaten Lima Puluh Kota. Ketiganya dapat dipromosikan sebagai destinasi kawasan sekitar Payakumbuh, tetapi tidak boleh disebut berada di dalam kota.</div>
+      </div>
+    </section>
+
+    <section class="section" id="budaya">
+      <div class="container culture">
+        <div class="culture-photo">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/DSC_4047_wikimedia2020_deni_dahniel_Pacu_Itik_Terbang.jpg?width=1200" alt="Tradisi pacu itiak di Payakumbuh" loading="lazy">
+        </div>
+        <div class="culture-copy">
+          <span class="eyebrow">Budaya yang terus hidup</span>
+          <h2>Warisan bukan hanya untuk dikenang.</h2>
+          <p>Payakumbuh berada dalam lingkungan budaya Minangkabau. Adat, musyawarah, seni pertunjukan, dan tradisi nagari menjadi bagian dari kehidupan masyarakat yang terus berkembang.</p>
+          <div class="culture-list">
+            <div class="culture-item"><b>01</b><span><strong>Pacu Itiak</strong> — tradisi khas yang dikenal luas dari Payakumbuh dan sekitarnya.</span></div>
+            <div class="culture-item"><b>02</b><span><strong>Randai dan seni Minang</strong> — perpaduan cerita, gerak, musik, dan nilai kehidupan.</span></div>
+            <div class="culture-item"><b>03</b><span><strong>Adat dan nagari</strong> — ruang kebersamaan yang menjaga identitas masyarakat.</span></div>
+          </div>
+          <small class="image-credit">Foto Pacu Itiak: Deni Dahniel · <a href="https://commons.wikimedia.org/wiki/Category:Payakumbuh" target="_blank" rel="noopener">Wikimedia Commons</a></small>
+        </div>
+      </div>
+    </section>
+
+    <section class="section culinary" id="kuliner">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Rasa dari Ranah Minang</span>
+          <h2>Kenali kuliner, kenali ceritanya.</h2>
+          <p>Payakumbuh dikenal dengan ragam olahan rendang dan kudapan tradisional. Foto yang ditampilkan diberi keterangan sumber agar tidak menimbulkan kesan bahwa semua foto dibuat di Payakumbuh.</p>
+        </div>
+        <div class="food-grid">
+          <article class="food-card">
+            <div class="food-photo"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Rendang_daging_sapi_asli_Padang.JPG?width=900" alt="Hidangan rendang daging sapi" loading="lazy"></div>
+            <div class="food-content">
+              <h3>Rendang</h3>
+              <p>Olahan daging yang dimasak perlahan bersama santan dan racikan rempah hingga bumbu meresap. Rendang menjadi salah satu identitas kuliner yang menguatkan julukan Payakumbuh sebagai City of Randang.</p>
+              <span class="photo-note">Foto contoh rendang Minangkabau · bukan dokumentasi produsen lokal</span>
+              <small class="image-credit">Foto: Midori · <a href="https://commons.wikimedia.org/wiki/File:Rendang_daging_sapi_asli_Padang.JPG" target="_blank" rel="noopener">Wikimedia Commons, CC BY 3.0</a></small>
+            </div>
+          </article>
+          <article class="food-card">
+            <div class="food-photo"><img src="images/kuliner/galamai.jpg" alt="Galamai, kudapan tradisional khas Payakumbuh" loading="lazy"></div>
+            <div class="food-content">
+              <h3>Galamai</h3>
+              <p>Kudapan manis menyerupai dodol, dibuat dari tepung ketan, santan, dan gula. Proses memasaknya membutuhkan pengadukan lama hingga adonan mengental dan bertekstur kenyal.</p>
+              <span class="photo-note">Foto Galamai Gegek · diambil di Batusangkar, bukan Payakumbuh</span>
+              <small class="image-credit">Foto: Adhmi · <a href="https://commons.wikimedia.org/wiki/File:Galamai_gegek.jpg" target="_blank" rel="noopener">Wikimedia Commons, CC BY-SA 4.0</a></small>
+            </div>
+          </article>
+          <article class="food-card">
+            <div class="food-photo"><img src="images/kuliner/batiah.jpg" alt="Batiah, kudapan tradisional khas Payakumbuh" loading="lazy"></div>
+            <div class="food-content">
+              <h3>Batiah</h3>
+              <p>Kudapan berbahan beras ketan yang dibentuk pipih, dikeringkan, lalu digoreng hingga renyah. Batiah dikenal sebagai salah satu oleh-oleh khas Payakumbuh.</p>
+              <span class="photo-note">Foto Batiah khas Payakumbuh</span>
+              <small class="image-credit">Foto: Aldhiusy · <a href="https://commons.wikimedia.org/wiki/File:Batiah.jpg" target="_blank" rel="noopener">Wikimedia Commons, CC BY-SA 4.0</a></small>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing" id="jelajahi">
+      <div class="container">
+        <span class="eyebrow">Sampai jumpa di Payakumbuh</span>
+        <h2>Setiap sudut punya cerita. Setiap rasa punya kenangan.</h2>
+        <p>Jelajahi dengan rasa ingin tahu, hormati budaya setempat, dan dukung masyarakat serta pelaku usaha lokal dalam setiap perjalanan.</p>
+        <a class="btn btn-primary" href="#beranda">Kembali ke atas ↑</a>
+      </div>
+    </section>
+
+    <section class="sources">
+      <div class="container">
+        <h2>Rujukan informasi dan dokumentasi</h2>
+        <p>
+          Informasi destinasi: <a href="https://jadesta.kemenpar.go.id/desa/ngalauindah" target="_blank" rel="noopener">Jadesta — Desa Wisata Ngalau Indah</a>,
+          <a href="https://jadesta.kemenpar.go.id/desa/taman_batang_agam" target="_blank" rel="noopener">Jadesta — Taman Batang Agam</a>,
+          <a href="https://sisparnas.kemenpar.go.id/p/90858" target="_blank" rel="noopener">Sisparnas — Jembatan Ratapan Ibu</a>.
+          Informasi budaya dan pariwisata: <a href="https://disparpora.payakumbuhkota.go.id/" target="_blank" rel="noopener">Dinas Pariwisata Kota Payakumbuh</a>.
+          Informasi kuliner: <a href="https://rri.co.id/bukittinggi/kuliner/1792173/batiah-camilan-tradisional-khas-payakumbuh-yang-melegenda" target="_blank" rel="noopener">RRI — Batiah khas Payakumbuh</a>.
+          Foto berasal dari Wikimedia Commons dengan lisensi dan kredit yang dicantumkan pada setiap kartu. Foto Jembatan Ratapan Ibu sengaja belum ditampilkan karena belum ditemukan dokumentasi berlisensi terbuka yang dapat dipastikan.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-row">
+      <div><div class="footer-brand">Explore Payakumbuh</div><div class="footer-small">The Heart of Minangkabau</div></div>
+      <div class="footer-small">© 2026 Explore Payakumbuh · Proyek informasi dan promosi lokal</div>
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.querySelector(".menu-toggle");
+    const links = document.querySelector(".nav-links");
+    toggle.addEventListener("click", () => {
+      const isOpen = links.classList.toggle("open");
+      toggle.setAttribute("aria-expanded", String(isOpen));
+      toggle.textContent = isOpen ? "×" : "☰";
+    });
+    links.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        links.classList.remove("open");
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.textContent = "☰";
+      });
+    });
+  </script>
 </body>
 </html>
-

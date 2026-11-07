@@ -1,0 +1,792 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Jelajahi Ngalau Indah, gua kapur dan panorama alam di Payakumbuh, Sumatera Barat.">
+  <title>Ngalau Indah — Explore Payakumbuh</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ink: #17251f;
+      --muted: #68766e;
+      --green: #244c3c;
+      --cream: #f6f5ef;
+      --line: #e5e8e1;
+      --white: #fff;
+      --serif: "Playfair Display", Georgia, serif;
+      --sans: "DM Sans", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      color: var(--ink);
+      background: var(--cream);
+      line-height: 1.7;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    img { display: block; width: 100%; object-fit: cover; }
+
+    .container {
+      width: min(1160px, calc(100% - 48px));
+      margin: auto;
+    }
+
+    /* NAVIGATION */
+    .navbar {
+      height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(246,245,239,.96);
+      padding: 0 max(24px, calc((100% - 1160px)/2));
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(16px);
+    }
+
+    .brand {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -.7px;
+    }
+
+    .brand span { color: #71917d; }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .back-link { color: var(--green); }
+
+    .back-link:hover { opacity: .65; }
+
+    /* HERO */
+    .hero {
+      min-height: 650px;
+      position: relative;
+      display: flex;
+      align-items: end;
+      overflow: hidden;
+      background: #263d32;
+      color: white;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg,rgba(9,22,16,.78),rgba(9,22,16,.15)),
+        linear-gradient(0deg,rgba(9,22,16,.6),transparent 65%),
+        url("https://commons.wikimedia.org/wiki/Special:FilePath/Pemandangan_kota_Payakumbuh_02.jpg?width=2000") center/cover;
+      animation: heroZoom 18s ease-in-out infinite alternate;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      width: min(1160px,calc(100% - 48px));
+      margin: 0 auto;
+      padding: 110px 0 85px;
+      animation: rise .9s ease both;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #d4e3d6;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font: 600 clamp(48px,8vw,92px)/1.08 var(--serif);
+      max-width: 800px;
+      letter-spacing: -2px;
+    }
+
+    .hero p {
+      max-width: 570px;
+      color: rgba(255,255,255,.85);
+      margin-top: 24px;
+      font-size: 15px;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      margin-top: 34px;
+      font-size: 12px;
+      color: rgba(255,255,255,.85);
+    }
+
+    /* INTRO */
+    .intro {
+      display: grid;
+      grid-template-columns: 1fr .8fr;
+      gap: 90px;
+      padding: 115px 0;
+      align-items: center;
+    }
+
+    .section-label {
+      color: #718d78;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      margin-bottom: 17px;
+    }
+
+    h2 {
+      font: 600 clamp(34px,4vw,52px)/1.2 var(--serif);
+      letter-spacing: -.8px;
+    }
+
+    .intro-copy p {
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .intro-image {
+      height: 440px;
+      position: relative;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .intro-image img { height: 100%; transition: transform .8s; }
+    .intro-image:hover img { transform: scale(1.05); }
+
+    .image-note {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 10px;
+    }
+
+    /* HIGHLIGHTS */
+    .highlights {
+      background: #e9eee7;
+      padding: 90px 0;
+    }
+
+    .section-heading {
+      max-width: 620px;
+      margin-bottom: 45px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      margin-top: 14px;
+      font-size: 14px;
+    }
+
+    .highlight-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 18px;
+    }
+
+    .highlight-card {
+      padding: 30px;
+      background: white;
+      border: 1px solid rgba(36,76,60,.06);
+      transition: transform .3s, box-shadow .3s;
+    }
+
+    .highlight-card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 18px 35px rgba(25,50,35,.08);
+    }
+
+    .highlight-number {
+      font: 30px var(--serif);
+      color: #819b85;
+      margin-bottom: 22px;
+    }
+
+    .highlight-card h3 { font-size: 16px; margin-bottom: 10px; }
+    .highlight-card p { font-size: 13px; color: var(--muted); }
+
+    /* GALLERY */
+    .gallery-section { padding: 110px 0; }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr 1fr;
+      grid-template-rows: 210px 210px;
+      gap: 14px;
+      margin-top: 40px;
+    }
+
+    .gallery-item {
+      overflow: hidden;
+      position: relative;
+      cursor: zoom-in;
+      background: #dce4dc;
+    }
+
+    .gallery-item:first-child { grid-row: span 2; }
+
+    .gallery-item img {
+      height: 100%;
+      transition: transform .7s;
+    }
+
+    .gallery-item:hover img { transform: scale(1.07); }
+
+    .gallery-item::after {
+      content: "Lihat foto ↗";
+      position: absolute;
+      bottom: 15px;
+      left: 15px;
+      color: white;
+      font-size: 11px;
+      opacity: 0;
+      transition: opacity .3s;
+      text-shadow: 0 1px 5px #222;
+    }
+
+    .gallery-item:hover::after { opacity: 1; }
+
+    /* VISITOR INFO */
+    .visitor {
+      padding: 90px 0;
+      background: #203f32;
+      color: white;
+    }
+
+    .visitor h2 { max-width: 650px; }
+
+    .visitor .section-label { color: #b6d1ba; }
+
+    .visitor-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 40px;
+      margin-top: 48px;
+    }
+
+    .visitor-item { border-top: 1px solid rgba(255,255,255,.2); padding-top: 20px; }
+    .visitor-item h3 { font-size: 15px; margin-bottom: 10px; }
+    .visitor-item p { color: rgba(255,255,255,.7); font-size: 13px; }
+
+    .notice {
+      margin-top: 40px;
+      padding: 18px 20px;
+      border: 1px solid rgba(255,255,255,.2);
+      color: rgba(255,255,255,.8);
+      font-size: 12px;
+    }
+
+    /* CTA */
+    .closing {
+      text-align: center;
+      padding: 100px 24px;
+    }
+
+    .closing h2 { max-width: 650px; margin: auto; }
+
+    .closing p {
+      color: var(--muted);
+      margin: 18px auto 28px;
+      font-size: 14px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--green);
+      color: white;
+      padding: 14px 25px;
+      font-size: 12px;
+      font-weight: 600;
+      transition: background .3s, transform .3s;
+    }
+
+    .btn:hover { background: #142e23; transform: translateY(-3px); }
+
+    footer {
+      padding: 28px 0;
+      border-top: 1px solid var(--line);
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    /* LIGHTBOX */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      background: rgba(5,12,8,.94);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 25px;
+    }
+
+    .lightbox.active { display: flex; }
+
+    .lightbox img {
+      max-width: 100%;
+      max-height: 85vh;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .lightbox button {
+      position: absolute;
+      top: 22px;
+      right: 25px;
+      border: 0;
+      background: transparent;
+      color: white;
+      font-size: 35px;
+      cursor: pointer;
+    }
+
+    /* ANIMATIONS */
+    .reveal {
+      opacity: 0;
+      transform: translateY(25px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(25px); }
+      to { opacity: 1; transform: none; }
+    }
+
+    @keyframes heroZoom {
+      from { transform: scale(1); }
+      to { transform: scale(1.08); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal { opacity: 1; transform: none; }
+    }
+
+    /* RESPONSIVE */
+    @media(max-width: 800px) {
+      .hero { min-height: 590px; }
+      .intro { grid-template-columns: 1fr; gap: 35px; padding: 75px 0; }
+      .intro-image { height: 330px; }
+      .highlight-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 230px 170px 170px; }
+      .gallery-item:first-child { grid-row: auto; grid-column: span 2; }
+      .visitor-grid { grid-template-columns: 1fr; gap: 25px; }
+    }
+
+    @media(max-width: 520px) {
+      .container { width: calc(100% - 36px); }
+      .navbar { height: 66px; padding: 0 18px; }
+      .nav-right { gap: 12px; font-size: 11px; }
+      .hero { min-height: 570px; }
+      .hero-content { width: calc(100% - 36px); padding-bottom: 65px; }
+      .hero h1 { font-size: 51px; }
+      .hero-meta { gap: 12px; }
+      .highlight-grid { grid-template-columns: 1fr; }
+      .gallery-section { padding: 75px 0; }
+      .gallery-grid { grid-template-rows: 220px 150px 150px; gap: 9px; }
+      .footer-row { flex-direction: column; }
+    }
+  
+/* ===== INTERAKSI DAN MOTION DESIGN ===== */
+html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+
+.gallery-explore {
+  display: inline-flex; align-items: center; gap: 12px;
+  margin-top: 18px; padding: 13px 20px; border-radius: 999px;
+  background: #172d3b; color: #fff; text-decoration: none;
+  font-size: 14px; font-weight: 600;
+  transition: transform .3s ease, background .3s ease, box-shadow .3s ease;
+}
+.gallery-explore:hover {
+  transform: translateY(-4px); background: #31566a;
+  box-shadow: 0 12px 28px #172d3b30;
+}
+
+.gallery-item { cursor: zoom-in; overflow: hidden; }
+.gallery-item img { transition: transform .7s cubic-bezier(.2,.7,.2,1), filter .4s ease; }
+.gallery-item:hover img { transform: scale(1.055); filter: brightness(.88); }
+
+.visitor-actions { display: flex; margin: 28px 0; }
+.visitor-action {
+  display: flex; align-items: center; gap: 16px;
+  padding: 18px 22px; width: min(100%, 390px);
+  border: 1px solid #ffffff30; border-radius: 16px;
+  color: inherit; text-decoration: none;
+  transition: transform .3s ease, background .3s ease;
+}
+.visitor-action:hover { transform: translateY(-4px); background: #ffffff12; }
+.visitor-action > span:first-child { font-size: 27px; }
+.visitor-action > span:last-child { margin-left: auto; font-size: 20px; }
+.visitor-action strong, .visitor-action small { display: block; }
+.visitor-action small { margin-top: 4px; opacity: .7; }
+
+.lightbox { gap: 18px; }
+.lightbox-figure { margin: 0; max-width: min(82vw, 1100px); text-align: center; }
+.lightbox-figure img {
+  display: block; max-width: 100%; max-height: 78vh;
+  width: auto; height: auto; object-fit: contain; border-radius: 10px;
+}
+.lightbox-figure figcaption { color: white; margin-top: 12px; font-size: 13px; }
+.lightbox .lightbox-close,
+.lightbox .lightbox-nav {
+  position: absolute; display: grid; place-items: center;
+  border: 1px solid #ffffff45; border-radius: 50%;
+  color: white; background: #ffffff18; cursor: pointer;
+  transition: background .2s ease, transform .2s ease;
+}
+.lightbox .lightbox-close:hover,
+.lightbox .lightbox-nav:hover { background: #ffffff35; transform: scale(1.08); }
+.lightbox .lightbox-close { top: 22px; right: 22px; width: 46px; height: 46px; font-size: 28px; }
+.lightbox .lightbox-nav { top: 50%; width: 48px; height: 48px; font-size: 34px; transform: translateY(-50%); }
+.lightbox .lightbox-nav:hover { transform: translateY(-50%) scale(1.08); }
+.lightbox .lightbox-prev { left: 22px; }
+.lightbox .lightbox-next { right: 22px; }
+.lightbox-counter { position: absolute; bottom: 22px; color: white; font-size: 13px; opacity: .8; }
+
+.floating-actions {
+  position: fixed; right: 22px; bottom: 24px; z-index: 80;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.floating-button {
+  display: grid; place-items: center; width: 48px; height: 48px;
+  border-radius: 50%; background: #172d3b; color: white;
+  text-decoration: none; font-size: 23px;
+  box-shadow: 0 8px 24px #0002;
+  transition: transform .25s ease, opacity .25s ease, background .25s ease;
+}
+.floating-button:hover { transform: translateY(-4px); background: #31566a; }
+#backToTop { opacity: 0; pointer-events: none; transform: translateY(10px); }
+#backToTop.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+
+@media (max-width: 600px) {
+  .lightbox .lightbox-prev { left: 8px; }
+  .lightbox .lightbox-next { right: 8px; }
+  .lightbox .lightbox-nav { width: 40px; height: 40px; }
+  .lightbox-figure { max-width: 88vw; }
+  .floating-actions { right: 14px; bottom: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <a class="brand" href="../index.html">EXPLORE<span>.</span></a>
+    <div class="nav-right">
+      <a href="#cerita">Tentang</a>
+      <a href="#galeri">Galeri</a>
+      <a class="back-link" href="../index.html">← Kembali</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-content">
+      <div class="eyebrow">Destinasi alam · Payakumbuh, Sumatera Barat</div>
+      <h1>Ngalau<br>Indah.</h1>
+      <p>
+        Menyusuri keheningan gua kapur, mengenal keindahan bentang alam,
+        dan menikmati panorama Payakumbuh dari ketinggian.
+      </p>
+      <div class="hero-meta">
+        <span>◉ Pakan Sinayan</span>
+        <span>⌖ Payakumbuh Barat</span>
+        <span>✦ Wisata alam</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="container intro reveal" id="cerita">
+      <div class="intro-copy">
+        <div class="section-label">01 — Mengenal destinasi</div>
+        <h2>Keindahan yang tersembunyi di balik bukit.</h2>
+        <p>
+          Ngalau Indah merupakan kawasan wisata alam di Kota Payakumbuh
+          yang dikenal dengan lingkungan perbukitan dan gua kapurnya.
+          Kata "ngalau" dalam bahasa Minangkabau merujuk pada gua.
+        </p>
+        <p>
+          Kawasan ini menawarkan pengalaman berbeda: menjelajahi ruang
+          alami di dalam bukit sekaligus menikmati suasana alam dari
+          kawasan yang lebih tinggi.
+        </p>
+        <p>
+          Setiap kunjungan sebaiknya dilakukan dengan tetap menjaga
+          kebersihan, tidak merusak formasi batuan, dan mengikuti
+          arahan pengelola setempat.
+        </p>
+      </div>
+      <div>
+        <div class="intro-image">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Ko_Difoto_Dari_Puncak_Ngalau_-_panoramio.jpg?width=1200"
+               alt="Panorama alam dari kawasan Puncak Ngalau"
+               loading="lazy">
+        </div>
+        <div class="image-note">Panorama kawasan Ngalau — dokumentasi Wikimedia Commons.</div>
+      </div>
+    </section>
+
+    <section class="highlights">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="section-label">02 — Daya tarik</div>
+          <h2>Ada banyak hal untuk ditemukan.</h2>
+          <p>Kenali karakter kawasan ini sebelum memulai perjalanan.</p>
+        </div>
+
+        <div class="highlight-grid">
+          <article class="highlight-card reveal">
+            <div class="highlight-number">01</div>
+            <h3>Gua Kapur</h3>
+            <p>Ruang alami di dalam bukit yang menjadi ciri khas kawasan Ngalau.</p>
+          </article>
+          <article class="highlight-card reveal">
+            <div class="highlight-number">02</div>
+            <h3>Formasi Batuan</h3>
+            <p>Kenali bentukan batuan alami yang terbentuk melalui proses geologi dalam waktu panjang.</p>
+          </article>
+          <article class="highlight-card reveal">
+            <div class="highlight-number">03</div>
+            <h3>Panorama Ketinggian</h3>
+            <p>Menikmati bentang alam dan pemandangan kawasan Payakumbuh dari area perbukitan.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="container gallery-section" id="galeri">
+      <div class="section-heading reveal">
+        <div class="section-label">03 — Galeri visual</div>
+        <h2>Mengabadikan suasana Ngalau.</h2>
+        <p>Tekan foto untuk melihatnya dalam ukuran lebih besar.</p>
+        <a class="gallery-explore" href="#galeri-grid">
+          <span aria-hidden="true">▦</span> Jelajahi Galeri <span aria-hidden="true">↓</span>
+        </a>
+      </div>
+
+      <div class="gallery-grid" id="galeri-grid">
+        <div class="gallery-item reveal">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Pemandangan_kota_Payakumbuh_02.jpg?width=1200"
+               alt="Panorama kawasan Ngalau Indah" loading="lazy">
+        </div>
+        <div class="gallery-item reveal">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Ko_Difoto_Dari_Puncak_Ngalau_-_panoramio.jpg?width=900"
+               alt="Pemandangan dari Puncak Ngalau" loading="lazy">
+        </div>
+        <div class="gallery-item reveal">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Pemandangan_kota_Payakumbuh_01.jpg?width=900"
+               alt="Bentang alam Payakumbuh" loading="lazy">
+        </div>
+        <div class="gallery-item reveal">
+          <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=900"
+               alt="Ilustrasi suasana alam pegunungan" loading="lazy">
+        </div>
+        <div class="gallery-item reveal">
+          <img src="https://images.unsplash.com/photo-1511497584788-876760111969?w=900"
+               alt="Ilustrasi suasana hutan" loading="lazy">
+        </div>
+      </div>
+      <p class="image-note">
+        Catatan: foto ilustrasi alam bukan dokumentasi Ngalau Indah telah diberi keterangan pada teks alternatif. Pastikan dokumentasi lokal diverifikasi sebelum publikasi.
+      </p>
+    </section>
+
+    <section class="visitor">
+      <div class="container">
+        <div class="section-label">04 — Rencana kunjungan</div>
+        <h2>Persiapkan perjalanan dengan nyaman.</h2>
+
+        <div class="visitor-grid">
+          <div class="visitor-item">
+            <h3>Lokasi</h3>
+            <p>Kawasan Pakan Sinayan, Payakumbuh Barat, Kota Payakumbuh, Sumatera Barat.</p>
+          </div>
+          <div class="visitor-item">
+            <h3>Aktivitas</h3>
+            <p>Menikmati panorama, mengenal lingkungan gua, fotografi, dan menjelajahi kawasan sesuai area yang dibuka untuk pengunjung.</p>
+          </div>
+          <div class="visitor-item">
+            <h3>Tips berkunjung</h3>
+            <p>Gunakan alas kaki yang nyaman, jaga kebersihan, dan ikuti petunjuk pengelola terutama saat memasuki area gua.</p>
+          </div>
+        </div>
+
+        <div class="visitor-actions">
+          <a class="visitor-action" href="https://www.google.com/maps/search/?api=1&query=Ngalau+Indah+Payakumbuh" target="_blank" rel="noopener noreferrer">
+            <span aria-hidden="true">⌖</span>
+            <span><strong>Lihat lokasi</strong><small>Buka petunjuk di Google Maps</small></span>
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+
+        <div class="notice">
+          Informasi jam operasional, harga tiket, fasilitas, dan kondisi akses dapat berubah. Konfirmasikan kepada pengelola atau dinas pariwisata sebelum berkunjung.
+        </div>
+      </div>
+    </section>
+
+    <section class="closing">
+      <div class="section-label">Explore more</div>
+      <h2>Masih banyak cerita di Payakumbuh.</h2>
+      <p>Lanjutkan perjalanan dan temukan destinasi lainnya di Ranah Minang.</p>
+      <a href="../index.html#wisata" class="btn">Jelajahi destinasi lainnya ↗</a>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container footer-row">
+      <span><strong>EXPLORE.</strong> Payakumbuh — The Heart of Minangkabau</span>
+      <span>© 2026 Explore Payakumbuh</span>
+    </div>
+  </footer>
+
+  <div class="lightbox" id="lightbox" aria-modal="true" role="dialog" aria-label="Galeri foto" aria-hidden="true">
+    <button class="lightbox-close" id="closeLightbox" aria-label="Tutup galeri">×</button>
+    <button class="lightbox-nav lightbox-prev" id="galleryPrev" aria-label="Foto sebelumnya">‹</button>
+    <figure class="lightbox-figure">
+      <img id="lightboxImage" src="" alt="">
+      <figcaption id="lightboxCaption"></figcaption>
+    </figure>
+    <button class="lightbox-nav lightbox-next" id="galleryNext" aria-label="Foto berikutnya">›</button>
+    <div class="lightbox-counter" id="galleryCounter" aria-live="polite"></div>
+  </div>
+
+  <div class="floating-actions">
+    <a href="#top" class="floating-button" id="backToTop" aria-label="Kembali ke atas">↑</a>
+    <a href="https://www.google.com/maps/search/?api=1&query=Ngalau+Indah+Payakumbuh" target="_blank" rel="noopener noreferrer" class="floating-button location-float" aria-label="Buka lokasi">⌖</a>
+  </div>
+
+  <script>
+    // Animasi masuk layar
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+    // Galeri dengan navigasi, keyboard, dan swipe
+    const photos = [...document.querySelectorAll(".gallery-item img")];
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImage = document.getElementById("lightboxImage");
+    const lightboxCaption = document.getElementById("lightboxCaption");
+    const galleryCounter = document.getElementById("galleryCounter");
+    const closeLightbox = document.getElementById("closeLightbox");
+    let currentPhoto = 0;
+    let touchStartX = 0;
+
+    function showPhoto(index) {
+      currentPhoto = (index + photos.length) % photos.length;
+      const photo = photos[currentPhoto];
+      lightboxImage.src = photo.src;
+      lightboxImage.alt = photo.alt;
+      lightboxCaption.textContent = photo.alt;
+      galleryCounter.textContent = `${currentPhoto + 1} / ${photos.length}`;
+    }
+
+    function openGallery(index) {
+      showPhoto(index);
+      lightbox.classList.add("active");
+      lightbox.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      closeLightbox.focus();
+    }
+
+    function closeGallery() {
+      lightbox.classList.remove("active");
+      lightbox.setAttribute("aria-hidden", "true");
+      lightboxImage.src = "";
+      document.body.style.overflow = "";
+    }
+
+    photos.forEach((photo, index) => {
+      photo.addEventListener("click", () => openGallery(index));
+    });
+
+    document.getElementById("galleryPrev").addEventListener("click", () => showPhoto(currentPhoto - 1));
+    document.getElementById("galleryNext").addEventListener("click", () => showPhoto(currentPhoto + 1));
+    closeLightbox.addEventListener("click", closeGallery);
+
+    lightbox.addEventListener("click", event => {
+      if (event.target === lightbox) closeGallery();
+    });
+
+    document.addEventListener("keydown", event => {
+      if (!lightbox.classList.contains("active")) return;
+      if (event.key === "Escape") closeGallery();
+      if (event.key === "ArrowLeft") showPhoto(currentPhoto - 1);
+      if (event.key === "ArrowRight") showPhoto(currentPhoto + 1);
+    });
+
+    lightbox.addEventListener("touchstart", event => {
+      touchStartX = event.changedTouches[0].screenX;
+    }, { passive: true });
+
+    lightbox.addEventListener("touchend", event => {
+      const distance = event.changedTouches[0].screenX - touchStartX;
+      if (Math.abs(distance) > 55) {
+        showPhoto(currentPhoto + (distance < 0 ? 1 : -1));
+      }
+    }, { passive: true });
+
+    // Tombol kembali ke atas muncul setelah halaman digulir
+    const backToTop = document.getElementById("backToTop");
+    window.addEventListener("scroll", () => {
+      backToTop.classList.toggle("show", window.scrollY > 450);
+    }, { passive: true });
+  </script>
+</body>
+</html>
