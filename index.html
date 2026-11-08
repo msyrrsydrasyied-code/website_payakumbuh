@@ -235,6 +235,44 @@
     }
 }
 
+
+/* EXPLORATION VIEW */
+.explore-view{position:fixed;inset:0;z-index:50;background:var(--paper);overflow:auto;display:none}
+.explore-view.active{display:block;animation:exploreIn .28s ease}
+@keyframes exploreIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.explore-top{position:sticky;top:0;z-index:5;background:rgba(24,61,50,.97);color:#fff;backdrop-filter:blur(12px)}
+.explore-top-inner{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.explore-back{border:1px solid rgba(255,255,255,.35);border-radius:999px;background:transparent;color:#fff;padding:10px 16px;font:600 .8rem var(--sans);cursor:pointer}
+.explore-kicker{color:#b89762;font-size:.72rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase}
+.explore-heading{padding:68px 0 34px}
+.explore-heading h1{font:600 clamp(2.5rem,6vw,4.8rem)/1.05 var(--serif);letter-spacing:-.04em;color:var(--forest);margin:10px 0 14px}
+.explore-heading p{max-width:650px;color:var(--muted)}
+.explore-filters{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0 30px}
+.explore-filter{border:1px solid #d8d5ca;background:transparent;color:var(--forest);border-radius:999px;padding:10px 17px;font:600 .77rem var(--sans);cursor:pointer}
+.explore-filter.active,.explore-filter:hover{background:var(--forest);border-color:var(--forest);color:white}
+.explore-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;padding-bottom:72px}
+.explore-card{background:white;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 8px 28px rgba(25,50,39,.06)}
+.explore-card-media{height:220px;background:#e5e4dc;overflow:hidden}
+.explore-card-media img{transition:transform .6s}
+.explore-card:hover img{transform:scale(1.05)}
+.explore-card-body{padding:20px}
+.explore-tag{color:#9a7845;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.explore-card h2{font:600 1.45rem var(--serif);margin:7px 0}
+.explore-card p{font-size:.83rem;color:var(--muted);line-height:1.75}
+.explore-card .location{margin:10px 0 16px}
+.explore-detail{border:0;background:var(--forest);color:white;border-radius:999px;padding:11px 17px;font:700 .75rem var(--sans);cursor:pointer}
+.explore-detail:hover{background:#315b49}
+.explore-empty{grid-column:1/-1;color:var(--muted);padding:30px 0}
+.explore-detail-panel{position:fixed;inset:0;z-index:60;background:rgba(10,25,20,.72);display:none;align-items:center;justify-content:center;padding:22px}
+.explore-detail-panel.active{display:flex}
+.explore-detail-box{width:min(680px,100%);max-height:88vh;overflow:auto;background:var(--paper);border-radius:18px;padding:28px}
+.explore-detail-box h2{font:600 2rem var(--serif);color:var(--forest);margin:8px 0}
+.explore-detail-box p{color:var(--muted);margin:10px 0;line-height:1.8}
+.explore-detail-close{float:right;border:0;background:#e9e5da;border-radius:50%;width:38px;height:38px;font-size:1.2rem;cursor:pointer}
+@media(max-width:850px){.explore-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.explore-grid{grid-template-columns:1fr}.explore-card-media{height:230px}.explore-heading{padding:48px 0 28px}.explore-detail-box{padding:22px}}
+@media(prefers-reduced-motion:reduce){.explore-view.active{animation:none}.explore-card:hover img{transform:none}}
+
 </style>
 </head>
 <body>
@@ -451,6 +489,21 @@
     </section>
   </main>
 
+
+<section class="explore-view" id="exploreView" aria-hidden="true">
+  <div class="explore-top"><div class="container explore-top-inner">
+    <a class="brand" href="#beranda" id="exploreBrand"><span class="brand-mark">P</span><span class="brand-name">Explore Payakumbuh</span></a>
+    <button class="explore-back" id="exploreBack" type="button">← Kembali ke Beranda</button>
+  </div></div>
+  <div class="container">
+    <header class="explore-heading"><span class="explore-kicker" id="exploreKicker">Destinasi Utama</span><h1 id="exploreTitle">Eksplorasi keindahan alam.</h1><p id="exploreDescription"></p></header>
+    <div class="explore-filters" id="exploreFilters" aria-label="Filter kategori"></div>
+    <div class="explore-grid" id="exploreGrid"></div>
+  </div>
+</section>
+<div class="explore-detail-panel" id="exploreDetailPanel" role="dialog" aria-modal="true" aria-labelledby="exploreDetailTitle">
+  <article class="explore-detail-box"><button class="explore-detail-close" id="exploreDetailClose" aria-label="Tutup detail" type="button">×</button><span class="explore-kicker" id="exploreDetailKicker">Informasi</span><h2 id="exploreDetailTitle"></h2><p id="exploreDetailText"></p><p id="exploreDetailLocation"></p></article>
+</div>
   <footer>
     <div class="container footer-row">
       <div><div class="footer-brand">Explore Payakumbuh</div></div>
@@ -504,6 +557,89 @@ if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
 } else {
     revealElements.forEach(element => element.classList.add('is-visible'));
 }
+
+
+/* INTERAKSI HALAMAN EKSPLORASI */
+(() => {
+  const view = document.getElementById('exploreView');
+  if (!view) return;
+  const grid = document.getElementById('exploreGrid');
+  const filters = document.getElementById('exploreFilters');
+  const detailPanel = document.getElementById('exploreDetailPanel');
+  const data = {
+    destinasi: {
+      kicker:'Destinasi Utama', title:'Eksplorasi keindahan alam.',
+      description:'Temukan tempat-tempat menarik di Kota Payakumbuh dan kawasan Kabupaten Lima Puluh Kota. Pilih kategori, kenali ceritanya, lalu rencanakan perjalananmu.',
+      categories:['Semua Destinasi','Kota Payakumbuh','Kabupaten Lima Puluh Kota'],
+      items:[
+        ['Ngalau Indah','Alam & Gua','Payakumbuh Barat · Kota Payakumbuh','Kawasan bukit dan gua kapur di Pakan Sinayan. Ngalau dikenal dengan formasi stalaktit dan stalagmit serta panorama kota dari area ketinggian.','images/wisata/ngalau.jpg','Kota Payakumbuh'],
+        ['Taman Batang Agam','Ruang Publik','Kota Payakumbuh','Kawasan tepian sungai yang dikembangkan sebagai ruang publik dan area aktivitas warga. Batang Agam juga terhubung dengan kisah sejarah kota.','https://commons.wikimedia.org/wiki/Special:FilePath/Taman_Normalisasi_Batang_Agam_02.jpg?width=1100','Kota Payakumbuh'],
+        ['Jembatan Ratapan Ibu','Sejarah','Kota Payakumbuh','Jembatan bersejarah di atas Batang Agam. Kisah penamaannya berkaitan dengan cerita perjuangan dan kesedihan para ibu pada masa kolonial.','images/sejarah/jembatan.jpg','Kota Payakumbuh'],
+        ['Lembah Harau','Alam','Kabupaten Lima Puluh Kota','Lembah dengan tebing-tebing batu yang menjulang, hamparan hijau, dan air terjun. Tempat ini menjadi salah satu lanskap alam paling dikenal di Luak Limopuluah.','https://commons.wikimedia.org/wiki/Special:FilePath/Lembah_Harau.jpg?width=1100','Kabupaten Lima Puluh Kota'],
+        ['Kapalo Banda Taram','Alam & Perairan','Nagari Taram · Kabupaten Lima Puluh Kota','Kawasan perairan dan persawahan dengan suasana pedesaan. Rakit bambu dan pantulan perbukitan menjadi ciri visual kawasan ini.','https://commons.wikimedia.org/wiki/Special:FilePath/Bukit_hijau_dan_rakit_di_kapalo_banda_taram.jpg?width=1100','Kabupaten Lima Puluh Kota'],
+        ['Kelok Sembilan','Lanskap & Ikon','Kabupaten Lima Puluh Kota','Jembatan layang dan ruas jalan berkelok yang membentang di antara perbukitan Bukit Barisan. Salah satu ikon perjalanan di Sumatera Barat.','https://commons.wikimedia.org/wiki/Special:FilePath/Panorama_Kelok_sembilan.jpg?width=1100','Kabupaten Lima Puluh Kota']
+      ]
+    },
+    budaya: {
+      kicker:'Warisan Budaya', title:'Kenali tradisi dan identitas Minangkabau.',
+      description:'Payakumbuh berada dalam lingkungan budaya Minangkabau. Adat, musyawarah, seni pertunjukan, dan tradisi nagari menjadi bagian dari kehidupan masyarakat yang terus berkembang.',
+      categories:['Semua Budaya','Tradisi','Seni & Adat'],
+      items:[
+        ['Pacu Itiak','Tradisi','Payakumbuh dan sekitarnya','Tradisi khas yang dikenal luas dari Payakumbuh dan sekitarnya. Pacu itiak menjadi salah satu penanda budaya lokal yang menarik untuk dikenali.','https://commons.wikimedia.org/wiki/Special:FilePath/DSC_4047_wikimedia2020_deni_dahniel_Pacu_Itik_Terbang.jpg?width=1200','Tradisi'],
+        ['Randai dan Seni Minang','Seni & Pertunjukan','Budaya Minangkabau','Perpaduan cerita, gerak, musik, dan nilai kehidupan yang diwariskan melalui seni pertunjukan masyarakat Minangkabau.','','Seni & Adat'],
+        ['Adat dan Nagari','Adat & Kehidupan','Masyarakat Minangkabau','Ruang kebersamaan yang menjaga identitas masyarakat melalui adat, musyawarah, dan kehidupan nagari.','','Seni & Adat']
+      ]
+    },
+    kuliner: {
+      kicker:'Kuliner Khas', title:'Kenali kuliner, kenali ceritanya.',
+      description:'Payakumbuh dikenal dengan ragam olahan rendang dan kudapan tradisional. Kenali bahan, proses, dan cerita di balik hidangan yang menjadi bagian dari identitas daerah.',
+      categories:['Semua Kuliner','Hidangan','Kudapan Tradisional'],
+      items:[
+        ['Rendang','Hidangan','Payakumbuh · Minangkabau','Olahan daging yang dimasak perlahan bersama santan dan racikan rempah hingga bumbu meresap. Rendang menjadi salah satu identitas kuliner yang menguatkan julukan Payakumbuh sebagai City of Randang.','https://commons.wikimedia.org/wiki/Special:FilePath/Rendang_daging_sapi_asli_Padang.JPG?width=900','Hidangan'],
+        ['Galamai','Kudapan Tradisional','Payakumbuh','Kudapan manis menyerupai dodol, dibuat dari tepung ketan, santan, dan gula. Proses memasaknya membutuhkan pengadukan lama hingga adonan mengental dan bertekstur kenyal.','images/kuliner/galamai.jpg','Kudapan Tradisional'],
+        ['Batiah','Kudapan Tradisional','Payakumbuh','Kudapan berbahan beras ketan yang dibentuk pipih, dikeringkan, lalu digoreng hingga renyah. Batiah dikenal sebagai salah satu oleh-oleh khas Payakumbuh.','images/kuliner/batiah.jpg','Kudapan Tradisional']
+      ]
+    }
+  };
+  let current = 'destinasi';
+  let activeFilter = 0;
+  function render(){
+    const page = data[current];
+    document.getElementById('exploreKicker').textContent = page.kicker;
+    document.getElementById('exploreTitle').textContent = page.title;
+    document.getElementById('exploreDescription').textContent = page.description;
+    filters.innerHTML = page.categories.map((name,i)=>'<button type="button" class="explore-filter '+(i===activeFilter?'active':'')+'" data-filter="'+i+'">'+name+'</button>').join('');
+    const shown = page.items.filter(item=>activeFilter===0 || item[5]===page.categories[activeFilter]);
+    grid.innerHTML = shown.map(item=>{
+      const idx = page.items.indexOf(item);
+      const media = item[4] ? '<img src="'+item[4]+'" alt="'+item[0]+'" loading="lazy">' : '<div class="no-photo"><div><span class="symbol">✦</span><strong>'+item[0]+'</strong><small>Kenali warisan budaya Minangkabau</small></div></div>';
+      return '<article class="explore-card"><div class="explore-card-media">'+media+'</div><div class="explore-card-body"><span class="explore-tag">'+item[1]+'</span><h2>'+item[0]+'</h2><p>'+item[3]+'</p><span class="location">'+item[2]+'</span><button type="button" class="explore-detail" data-detail="'+idx+'">Lihat Detail →</button></div></article>';
+    }).join('') || '<p class="explore-empty">Belum ada konten pada kategori ini.</p>';
+  }
+  function open(type){
+    current = data[type] ? type : 'destinasi'; activeFilter=0; render();
+    view.classList.add('active'); view.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden'; view.scrollTop=0;
+  }
+  function close(){
+    detailPanel.classList.remove('active'); view.classList.remove('active');
+    view.setAttribute('aria-hidden','true'); document.body.style.overflow='';
+  }
+  document.querySelectorAll('.nav-links a[href="#wisata"],.nav-links a[href="#budaya"],.nav-links a[href="#kuliner"],.hero-actions a[href="#wisata"],.hero-actions a[href="#kuliner"]').forEach(a=>{
+    a.addEventListener('click',e=>{e.preventDefault();const id=a.getAttribute('href');open(id==='#budaya'?'budaya':id==='#kuliner'?'kuliner':'destinasi');document.querySelector('.nav-links').classList.remove('open');document.querySelector('.menu-toggle').setAttribute('aria-expanded','false');});
+  });
+  document.querySelectorAll('#wisata .section-head,#budaya .culture-copy,#kuliner .section-head').forEach((section,i)=>{
+    const button=document.createElement('button');button.type='button';button.className='explore-detail';button.style.marginTop='20px';button.textContent='Jelajahi selengkapnya →';button.addEventListener('click',()=>open(['destinasi','budaya','kuliner'][i]));section.appendChild(button);
+  });
+  filters.addEventListener('click',e=>{const btn=e.target.closest('[data-filter]');if(!btn)return;activeFilter=Number(btn.dataset.filter);render();});
+  grid.addEventListener('click',e=>{const btn=e.target.closest('[data-detail]');if(!btn)return;const item=data[current].items[Number(btn.dataset.detail)];document.getElementById('exploreDetailKicker').textContent=item[1];document.getElementById('exploreDetailTitle').textContent=item[0];document.getElementById('exploreDetailText').textContent=item[3];document.getElementById('exploreDetailLocation').textContent='Lokasi: '+item[2];detailPanel.classList.add('active');});
+  document.getElementById('exploreBack').addEventListener('click',close);
+  document.getElementById('exploreBrand').addEventListener('click',e=>{e.preventDefault();close();});
+  document.getElementById('exploreDetailClose').addEventListener('click',()=>detailPanel.classList.remove('active'));
+  detailPanel.addEventListener('click',e=>{if(e.target===detailPanel)detailPanel.classList.remove('active');});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'){detailPanel.classList.remove('active');if(view.classList.contains('active'))close();}});
+  window.openPayakumbuhExplore=open;
+})();
 
 </script>
 </body>
